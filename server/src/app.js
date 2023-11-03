@@ -1,5 +1,8 @@
 import express from "express";
-import { logRouter } from "./routes/log.routes.js";
+import { logRouter } from '../src/routes/log.routes.js';
+
+
+
 
 
 
@@ -7,7 +10,7 @@ const app = express();
 
 //middlewares
 app.use(express.json())
-app.use(logRouter)
+app.use('/log',logRouter)
 
 
 
