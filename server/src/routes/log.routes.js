@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ctrlCreateLog, ctrlGetLog } from "../controllers/log.controllers.js";
+import { ctrlCreateLog, ctrlGetLog } from "../controllers/user.controllers.js";
 
 
 
