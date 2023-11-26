@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import "dotenv/config";
 import { config } from "./settings/config.js";
 
-import { logRouter } from '../src/routes/log.routes.js';
+import { userRouter } from './routes/user.routes.js';
 import { startConnecton } from "./settings/database.js";
 
 
@@ -20,7 +20,11 @@ app.use(express.json())
 app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
-app.use('/log',logRouter)
+
+
+
+// Rutas
+app.use('/user', userRouter);
 
 
 
