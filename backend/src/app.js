@@ -6,7 +6,9 @@ import "dotenv/config";
 import { config } from "./settings/config.js";
 
 import { userRouter } from './routes/user.routes.js';
+import { postRouter } from "./routes/post.routes.js";
 import { startConnecton } from "./settings/database.js";
+
 
 
 
@@ -22,6 +24,7 @@ app.use(helmet());
 
 // Rutas
 app.use('/user', userRouter);
+app.use('/post', postRouter)
 
 
 const hostname = "localhost";
