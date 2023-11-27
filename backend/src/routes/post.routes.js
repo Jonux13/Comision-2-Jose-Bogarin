@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ctrlCreatePost, ctrlGetAllPost, ctrlGetPostById } from "../controllers/post.controllers.js";
+import { ctrlCreatePost, ctrlDeletePostById, ctrlGetAllPost, ctrlGetPostById, ctrlUpdatePostById } from "../controllers/post.controllers.js";
 
 
 
@@ -10,6 +10,10 @@ postRouter.get('/',ctrlGetAllPost)
 postRouter.post('/',ctrlCreatePost)
 
 postRouter.get('/:postId',ctrlGetPostById)
+
+postRouter.put('/:postId',ctrlUpdatePostById)
+
+postRouter.delete('/:postId',ctrlDeletePostById)
 
 
 export {postRouter} 
