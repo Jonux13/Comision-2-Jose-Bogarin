@@ -10,9 +10,6 @@ import { startConnecton } from "./settings/database.js";
 
 
 
-
-
-
 const app = express();
 
 //middlewares
@@ -27,11 +24,11 @@ app.use(helmet());
 app.use('/user', userRouter);
 
 
-
 const hostname = "localhost";
-// const port = 3000;
 const route = '/user'
 
+
+// Inicia el servidor escuchando en el puerto especificado en la configuración.
 app.listen(config.PORT, async() => {
   await startConnecton()
   console.log(`Servidor escuchando en http://${hostname}:${config.PORT}${route}`);
