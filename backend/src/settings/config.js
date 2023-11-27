@@ -1,5 +1,7 @@
 import "dotenv/config";
 
+
+// Objeto de configuración que contiene las variables de entorno o valores predeterminados.
 export const config = { 
     PORT: process.env.PORT || 3000,
     MONGO_URI:
