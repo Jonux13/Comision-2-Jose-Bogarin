@@ -1,12 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const postSchema = new Schema(
   {
-    username: {
+    user: {
       type: String,
+      ref: "user",
       required: true,
-      maxLength: 20,
-      minLength: 3,
     },
     titulo: {
       type: String,
@@ -21,5 +20,6 @@ const postSchema = new Schema(
     timestamps: true,
   }
 );
+
 
 export const PostModel = model("post", postSchema);

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ctrlCreateUser, ctrlGetUserById, ctrlGetAllUsers } from "../controllers/user.controllers.js";
+import { ctrlCreateUser, ctrlLoginUser,  } from "../controllers/user.controllers.js";
 
 
 
@@ -7,12 +7,11 @@ import { ctrlCreateUser, ctrlGetUserById, ctrlGetAllUsers } from "../controllers
 const userRouter = Router();
 
 
-// Ruta GET para obtener todos los usuarios.
-userRouter.get('/',ctrlGetAllUsers)
-// Ruta POST para crear un nuevo usuario.
-userRouter.post('/',ctrlCreateUser)
-// Ruta GET para obtener un usuario por su ID.
-userRouter.get('/:userId',ctrlGetUserById)
+
+// Ruta POST para crear (registrar) un nuevo usuario.
+userRouter.post('/register',ctrlCreateUser)
+// Ruta POST para logear un usuario.
+userRouter.post('/login', ctrlLoginUser);
 
 
 

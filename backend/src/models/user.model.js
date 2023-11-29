@@ -17,7 +17,7 @@ const userSchema = new Schema({
         unique: true,
         required: true
     },
-     // Campo 'pasword' de tipo String y obligatorio.
+     // Campo 'password' de tipo String y obligatorio.
     password:{
         type: String,
         required: true

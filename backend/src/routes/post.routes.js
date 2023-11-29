@@ -5,6 +5,7 @@ import { ctrlCreatePost, ctrlDeletePostById, ctrlGetAllPost, ctrlGetPostById, ct
 
 const postRouter = Router();
 
+
 postRouter.get('/',ctrlGetAllPost)
 
 postRouter.post('/',ctrlCreatePost)

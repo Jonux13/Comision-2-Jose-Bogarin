@@ -1,17 +1,29 @@
 import { PostModel } from "../models/post.model.js";
 
 
-// Controlador para la creación de un nuevo post
-export const ctrlCreatePost = async (req, res) => {
-    try {
-        const newUser = await PostModel.create(req.body);
 
-        res.status(201).json(newUser);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+export const ctrlCreatePost = async (req, res) => {
+  try {
+    // if (!req.user || !req.user._id) {
+    //   return res.status(401).json({ error: 'Unauthorized' });
+    // }
+
+    const newPostData = {
+      user: req.user.user, // Asigna el nombre de usuario del usuario autenticado
+      titulo: req.body.titulo,
+      contenido: req.body.contenido,
+    };
+
+    const newPost = await PostModel.create(newPostData);
+
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
+
+
 
 
 // Ruta GET para obtener todos los post.
@@ -36,7 +48,7 @@ export const ctrlGetPostById = async (req, res) => {
 
     const { postId } = req.params;
     try {
-        const post = await PostModel.findOne({ _id: postId }, "-__v");
+        const post = await PostModel.findOne({ _id: postId }, ["-__v"]);
         if (!post) return res.sendStatus(404);
         res.json(post);
     } catch (error) {
