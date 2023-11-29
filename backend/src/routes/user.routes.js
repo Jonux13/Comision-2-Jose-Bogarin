@@ -1,19 +1,16 @@
 import { Router } from "express";
-import { ctrlCreateUser, ctrlLoginUser,  } from "../controllers/user.controllers.js";
-
-
+import {
+  ctrlCreateUser,
+  ctrlLoginUser,
+} from "../controllers/user.controllers.js";
 
 // Crea una instancia de Router para gestionar las rutas relacionadas con los usuarios.
 const userRouter = Router();
 
-
-
 // Ruta POST para crear (registrar) un nuevo usuario.
-userRouter.post('/register',ctrlCreateUser)
+userRouter.post("/register", ctrlCreateUser);
+
 // Ruta POST para logear un usuario.
-userRouter.post('/login', ctrlLoginUser);
+userRouter.post("/login", ctrlLoginUser);
 
-
-
-
-export {userRouter}
+export { userRouter };

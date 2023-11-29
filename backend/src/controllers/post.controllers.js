@@ -1,7 +1,7 @@
 import { PostModel } from "../models/post.model.js";
 
 
-
+// Controlador para crear post.
 export const ctrlCreatePost = async (req, res) => {
   try {
     // if (!req.user || !req.user._id) {
@@ -26,7 +26,7 @@ export const ctrlCreatePost = async (req, res) => {
 
 
 
-// Ruta GET para obtener todos los post.
+// Controlador para obtener todos los post.
 export const ctrlGetAllPost = async (req, res) => {
     try {
         const posts = await PostModel.find({}, "-__v");
