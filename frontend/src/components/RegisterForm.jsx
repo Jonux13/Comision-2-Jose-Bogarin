@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"
+import { API_URL } from '../utils/const';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -6,33 +8,34 @@ function RegisterForm() {
     email: '',
     password: ''
   });
+  
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    // console.log(formData);
     setFormData({
       username: '',
       email: '',
       password: ''
     });
 
-    const req = await fetch("http://localhost:3000/api/user/register",{
+    const req = await fetch(`${API_URL}/user/register`,{
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json"
       },
-    })
+    });
 
     if(req.status === 201) {
       alert("Usuario registrado exitosamente");
     } else {
       alert("Error al registrar un usuario");
-    const res = await req.json()
-    console.log(res)
     }
     
+    navigate("/login")
   
 
     
@@ -55,6 +58,15 @@ function RegisterForm() {
     <div className="container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
+   
+        <input type="url" 
+          placeholder="www.my-avatar.com" 
+          name="avatar" 
+          value={formData.avatar}
+          onChange={handleInputChange}
+          />
+          
+
         <input
           type="text"
           placeholder='Joe Doe'

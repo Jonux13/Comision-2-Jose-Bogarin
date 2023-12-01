@@ -21,7 +21,11 @@ const userSchema = new Schema({
     password:{
         type: String,
         required: true
-    }
+    },
+    avatar: {
+        type: String,
+        required: true,
+      }
 });
 
 export const UserModel = model("user", userSchema);

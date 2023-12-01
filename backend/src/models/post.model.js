@@ -2,7 +2,7 @@ import { Schema, model, Types } from "mongoose";
 
 const postSchema = new Schema(
   {
-    user: {
+    autor: {
       type: String,
       ref: "user",
       required: true,
@@ -11,10 +11,14 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    contenido: {
+    descripcion: {
       type: String,
       required: true,
     },
+    imageURL: {
+      type: String,
+      required: true,
+    }
   },
   {
     timestamps: true,
