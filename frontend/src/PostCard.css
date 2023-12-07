@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .post-card-container {
+    height: 30vh;
+    margin-top: 100px;
+    margin-bottom: -80px;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+   
+  }
+  
+  .post-card {
+    display: flex;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    height: 100%;
+    padding: 16px;
+    width: 1000px;
+  }
+  
+  .avatar-container {
+    margin-right: 16px;
+  }
+  
+  .avatar {
+    width: 50px; /* Ajusta según tus necesidades */
+    height: 50px; /* Ajusta según tus necesidades */
+    border-radius: 50%;
+  }
+  
+  .post-content {
+    flex-grow: 1;
+  }
+  
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .post-header h3 {
+    margin: 0;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: end;
+    margin-top: 8px;
+  }
+  
+  .comment-button,
+  .delete-button {
+    background-color: #f5d78d; 
+    color: #292929;
+    width: 8%;
+    border: none;
+    padding: 6px 6px 6px 6px ;
+    border-radius: 5px !important;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .comment-button:hover,
+  .delete-button:hover {
+    background-color: #ebc25a; 
+  }

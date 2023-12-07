@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.publicaciones-h2 {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  margin-top: 100px;
+  margin-bottom: -50px;
+}
+
+.post-btn {
+  position: relative;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 10px 20px 10px 20px;
+  width: 8%;
+  top: 80px ;
+  left: 175px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color:rgb(245, 215, 141);
+  color: #292929;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-top: 10px; 
+  transition: background-color 0.2s ease;
+}
+
+.post-btn:hover {
+  background-color: rgb(235, 194, 90);
+}
