@@ -20,20 +20,35 @@ const logout = () => {
     setAuth(null);
 };
 
-useEffect(() =>{
-    const user = JSON.parse(localStorage.getItem("user"));
+useEffect(() => {
+    const userString = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
-    if (!user || !token) {
+    console.log("userString:", userString);
+    console.log("token:", token);
+
+    // Verificar si userString o token son undefined o null
+    if (!userString || !token) {
+        // Si userString o token son undefined o null, limpiar y establecer auth a null
         localStorage.removeItem("user");
         localStorage.removeItem("token");
-
         setAuth(null);
         return;
     }
 
-    setAuth({ user, token});
-}, [])
+    try {
+        // Intentar realizar JSON.parse
+        const user = JSON.parse(userString);
+        setAuth({ user, token });
+    } catch (error) {
+        console.error("Error al hacer JSON.parse:", error);
+        // Manejar el error de JSON.parse, limpiar y establecer auth a null
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        setAuth(null);
+    }
+}, []);
+
 
   return (
     <AuthContext.Provider value={{auth, login, logout}}>

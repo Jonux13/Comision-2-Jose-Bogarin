@@ -3,8 +3,8 @@ import { Schema, model, Types } from "mongoose";
 const postSchema = new Schema(
   {
     autor: {
-      type: String,
-      ref: "user",
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     titulo: {

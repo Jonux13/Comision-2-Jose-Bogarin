@@ -40,11 +40,14 @@ export const ctrlLoginUser = async (req, res) => {
         return res.status(404).json({ error: 'User not found' });
       }
     
+      // if (!user.password) {
+      //   return res.status(401).json({ error: 'Invalid credentials' });
+      // }
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
 
-        return res.status(400).json({ error: 'Invalid credentials' });
+        return res.status(401).json({ error: 'Invalid credentials' });
       }
   
       const token = await createJWT({ userId: user._id });

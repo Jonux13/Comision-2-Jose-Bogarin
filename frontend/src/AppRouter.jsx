@@ -1,29 +1,35 @@
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import RegisterForm from './components/RegisterForm';
-import LoginForm from './components/LoginForm';
-import NotFoundPage from './pages/404Page';
-import PostPage from './pages/PostPage';
-import PrivateRoutes from './components/PrivateRoutes';
-
-
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
+import NotFoundPage from "./pages/404Page";
+import PostPage from "./pages/PostPage";
+import PrivateRoutes from "./components/PrivateRoutes";
+import NewPostPage from "./pages/NewPostPage";
 
 function AppRouter() {
   return (
-    <Routes>
+    <div>
+      <Header />
+      <Routes>
+        {/* Página principal fuera de PrivateRoutes */}
+        <Route path="/" element={<HomePage />} />
 
-      <Route element={<PrivateRoutes />}>
-      <Route path="/" element= {<HomePage />} />
-      <Route path="/post" element= {<PostPage />} />
-     </Route>
-   
+        {/* Página de posts accesible sin autenticación */}
+        <Route path="/post" element={<PostPage />} />
 
-      <Route path="/register" element= {<RegisterForm />} />
-      <Route path="/login" element= {<LoginForm />} />
+        {/* Rutas privadas dentro de PrivateRoutes */}
+        <Route element={<PrivateRoutes />}>
+          <Route path="/post/new" element={<NewPostPage />} />
+        </Route>
 
-      <Route path="*" element= {<NotFoundPage />} />
-    </Routes>
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
   );
 }
 
-export default AppRouter
+export default AppRouter;

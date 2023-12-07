@@ -55,45 +55,59 @@ function RegisterForm() {
 
 
   return (
-    <div className="container">
-      <h2>Register</h2>
+    <div className="form-container">
+     
       <form onSubmit={handleSubmit}>
-   
-        <input type="url" 
-          placeholder="www.my-avatar.com" 
-          name="avatar" 
-          value={formData.avatar}
-          onChange={handleInputChange}
+      <h2>Sing up</h2>
+        <label>
+          Avatar:
+          <input
+            type="url"
+            placeholder="www.my-avatar.com"
+            name="avatar"
+            value={formData.avatar}
+            onChange={handleInputChange}
           />
-          
-
-        <input
-          type="text"
-          placeholder='Joe Doe'
-          name='username'
-          value={formData.username}
-          onChange={handleInputChange}
-        />
-
-        <input
-          type="email"
-          placeholder='my-email@email.com'
-          name='email'
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-
-        <input
-          type="password"
-          placeholder='*********'
-          name='password'
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Register</button>
+        </label>
+  
+        <label>
+          Username:
+          <input
+            type="text"
+            placeholder="Joe Doe"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+          />
+        </label>
+  
+        <label>
+          Email:
+          <input
+            type="email"
+            placeholder="my-email@email.com"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+        </label>
+  
+        <label>
+          Password:
+          <input
+            type="password"
+            placeholder="*********"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+        </label>
+  
+        <button type="submit">SIGN UP</button>
       </form>
     </div>
   );
+  
 }
 
 export default RegisterForm;

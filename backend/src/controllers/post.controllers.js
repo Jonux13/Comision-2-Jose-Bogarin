@@ -1,27 +1,31 @@
 import { PostModel } from "../models/post.model.js";
 
-
 // Controlador para crear post.
 export const ctrlCreatePost = async (req, res) => {
+  const userId = req.user._id;
+
   try {
-    // if (!req.user || !req.user._id) {
-    //   return res.status(401).json({ error: 'Unauthorized' });
-    // }
+    const { titulo, descripcion, imageURL } = req.body;
 
-    const newPostData = {
-      user: req.user.user, // Asigna el nombre de usuario del usuario autenticado
-      titulo: req.body.titulo,
-      contenido: req.body.contenido,
-    };
+    const newPost = new PostModel({
+      autor: userId,
+      titulo,
+      descripcion,
+      imageURL,
+    });
 
-    const newPost = await PostModel.create(newPostData);
+    await newPost.save();
 
-    res.status(201).json(newPost);
+    // Poblar el campo 'autor' con 'username'
+    const populatedPost = await PostModel.findById(newPost._id).populate('autor', 'username');
+
+    return res.status(201).json(populatedPost);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: error.message });
   }
 };
+
+
 
 
 
