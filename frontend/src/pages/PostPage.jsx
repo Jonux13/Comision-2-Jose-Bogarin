@@ -5,6 +5,8 @@ import { AuthContext } from "../providers/AuthProvider";
 import { API_URL } from "../utils/const";
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
+import ModalForm from '../components/ModalForm';
+
 
 
 
@@ -12,6 +14,7 @@ const PostPage = () => {
   const { auth } = useContext(AuthContext);
   const [postlists, setPostlists] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const getAllPost = () => {
     fetch(`${API_URL}/post`, {
@@ -33,6 +36,36 @@ const PostPage = () => {
       .catch((error) => console.error('Error al obtener los datos:', error));
   };
 
+  const handleAddPost = async (postData) => {
+    try {
+      const response = await fetch(`${API_URL}/post`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: auth.token,
+        },
+        body: JSON.stringify(postData),
+      });
+  
+      console.log('Respuesta del servidor:', response);
+  
+      if (!response.ok) {
+        const responseData = await response.json();
+        console.error('Detalles del error:', responseData);
+        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+      }
+  
+      getAllPost();
+
+    } catch (error) {
+      console.error('Error al agregar el post:', error);
+    } finally {
+      
+      setModalOpen(false);
+    }
+  };
+  
+
   useEffect(() => {
     getAllPost();
   }, [auth]);
@@ -48,7 +81,25 @@ const PostPage = () => {
   return (
     <div>
       <h2 className='publicaciones-h2'>Publicaciones</h2>
-      <Link className='post-btn' to="/post/new">POST</Link>
+      <Link
+        className='post-btn'
+        onClick={() => {
+          if (auth && auth.token) {
+            setModalOpen(true);
+          } else {
+            console.log("Redirigiendo a la página de inicio de sesión...");
+            setRedirect(true);
+          }
+        }}
+            >
+        POST
+      </Link>
+
+      <ModalForm
+        isOpen={isModalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        onSubmit={handleAddPost}
+      />
       {postlists.map((postData) => (
         <PostCard
           key={postData._id}
