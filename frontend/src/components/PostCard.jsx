@@ -133,12 +133,6 @@ return (
               onClick={(e) => {
                 e.preventDefault();
 
-
-                console.log("auth.user._id:", auth.user._id);
-                console.log("Tipo de auth.user._id:", typeof auth.user._id);
-                console.log("autor:", autor);
-                console.log("Tipo de autor:", typeof autor);
-
                 if (auth && auth.user) {
                   console.log("auth:", auth);
                   // Verificar si el usuario autenticado es el autor del post
