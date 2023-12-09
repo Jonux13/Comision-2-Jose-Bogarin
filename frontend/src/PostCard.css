@@ -73,3 +73,7 @@
   .delete-button:hover {
     background-color: #ebc25a; 
   }
+
+  .comments-section {
+    margin-left: 40%;
+  }

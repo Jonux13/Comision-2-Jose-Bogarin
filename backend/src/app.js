@@ -6,6 +6,7 @@ import 'dotenv/config';
 import { config } from './settings/config.js';
 import { userRouter } from './routes/user.routes.js';
 import { postRouter } from './routes/post.routes.js';
+import { commentRouter } from './routes/comment.routes.js';
 import { startConnecton } from './settings/database.js';
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/user', userRouter);
 app.use('/api/post', postRouter);
+app.use('/api/comment', commentRouter); 
 
 // Inicia el servidor escuchando en el puerto especificado en la configuración.
 app.listen(config.PORT, async () => {

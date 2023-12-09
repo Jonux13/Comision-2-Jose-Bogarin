@@ -61,4 +61,18 @@ export const ctrlLoginUser = async (req, res) => {
   
   
 
+// Controlador para obtener información de un usuario por su ID.
+export const getUserById = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await UserModel.findOne({ _id: userId }, ["-__v"]);
+    if (!user) return res.sendStatus(404);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+};
+
+
 

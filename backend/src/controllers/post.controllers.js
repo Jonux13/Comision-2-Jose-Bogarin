@@ -18,6 +18,7 @@ export const ctrlCreatePost = async (req, res) => {
 
     // Poblar el campo 'autor' con 'username'
     const populatedPost = await PostModel.findById(newPost._id).populate('autor', 'username');
+    console.log('Post poblado:', populatedPost);
 
     return res.status(201).json(populatedPost);
   } catch (error) {
