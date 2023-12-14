@@ -69,8 +69,7 @@ Configurar la Base de Datos:
 Configura las credenciales de MongoDB en el archivo .env del directorio backend.
 Iniciar la Aplicación:
 
-bash
-Copy code
+
 ### Iniciar el servidor backend
 cd backend
 npm run dev

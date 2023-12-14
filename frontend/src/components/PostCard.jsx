@@ -23,8 +23,6 @@ const PostCard = ({
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [comments, setComments] = useState([]);
 
-  
-
   const handleDelete = async (postId) => {
     try {
       const response = await fetch(`${API_URL}/post/${postId}`, {
@@ -47,41 +45,40 @@ const PostCard = ({
   };
 
   const handleCommentSubmission = async (commentData) => {
-  console.log("commentData:", commentData);
-  try {
-    commentData.postId = postId;
+    console.log("commentData:", commentData);
+    try {
+      commentData.postId = postId;
 
-    const response = await fetch(`${API_URL}/comment/${postId}/comment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: auth.token,
-      },
-      body: JSON.stringify({
-        descripcion_comment: commentData.comentario,
-        postId: commentData.postId,
-      }),
-    });
+      const response = await fetch(`${API_URL}/comment/${postId}/comment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: auth.token,
+        },
+        body: JSON.stringify({
+          descripcion_comment: commentData.comentario,
+          postId: commentData.postId,
+        }),
+      });
 
-    console.log("Respuesta del servidor:", response);
+      console.log("Respuesta del servidor:", response);
 
-    if (!response.ok) {
-      const responseData = await response.json();
-      console.error("Detalles del error:", responseData);
-      throw new Error(
-        `Error en la solicitud: ${response.status} ${response.statusText}`
-      );
+      if (!response.ok) {
+        const responseData = await response.json();
+        console.error("Detalles del error:", responseData);
+        throw new Error(
+          `Error en la solicitud: ${response.status} ${response.statusText}`
+        );
+      }
+
+      // Almacenamos el comentario en el estado del componente
+      setComments([...comments, await response.json()]);
+    } catch (error) {
+      console.error("Error al agregar el comentario:", error);
+    } finally {
+      setCommentModalOpen(false);
     }
-
-    // Almacenamos el comentario en el estado del componente
-    setComments([...comments, await response.json()]);
-  } catch (error) {
-    console.error("Error al agregar el comentario:", error);
-  } finally {
-    setCommentModalOpen(false);
-  }
-};
-
+  };
 
   const fechaFormateada = formatDate(date);
 
