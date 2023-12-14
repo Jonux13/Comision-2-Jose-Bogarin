@@ -1,24 +1,27 @@
-import React, { useContext, useState,  useEffect  } from 'react';
-import { AuthContext } from '../providers/AuthProvider';
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { API_URL } from "../utils/const";
-import { Navigate } from 'react-router-dom';
-import ModalFormComment from '../components/ModalFormComment';
-import { formatDate } from '../utils/dateUtils';
+import { Navigate } from "react-router-dom";
+import ModalFormComment from "../components/ModalFormComment";
+import { formatDate } from "../utils/dateUtils";
 
-
-
-
-
-const PostCard = ({ postData, avatar, autor, postId, titulo, descripcion, descripcion_comment, imageURL, date, refresh }) => {
+const PostCard = ({
+  postData,
+  avatar,
+  autor,
+  postId,
+  titulo,
+  descripcion,
+  descripcion_comment,
+  imageURL,
+  date,
+  refresh,
+}) => {
   const { auth } = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [comments, setComments] = useState([]);
-
-
-
-
 
   const handleDelete = async (postId) => {
     try {
@@ -28,28 +31,28 @@ const PostCard = ({ postData, avatar, autor, postId, titulo, descripcion, descri
           Authorization: auth.token,
         },
       });
-  
+
       if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Error en la solicitud: ${response.status} ${response.statusText}`
+        );
       }
-  
+
       return response;
     } catch (error) {
       throw error;
     }
   };
-  
 
   const handleCommentSubmission = async (commentData) => {
-    console.log('commentData:', commentData);
+    console.log("commentData:", commentData);
     try {
-
       commentData.postId = postId;
-      
+
       const response = await fetch(`${API_URL}/comment/${postId}/comment`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: auth.token,
         },
         body: JSON.stringify({
@@ -58,25 +61,25 @@ const PostCard = ({ postData, avatar, autor, postId, titulo, descripcion, descri
         }),
       });
 
-      console.log('Respuesta del servidor:', response);
+      console.log("Respuesta del servidor:", response);
 
       if (!response.ok) {
         const responseData = await response.json();
-        console.error('Detalles del error:', responseData);
-        throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+        console.error("Detalles del error:", responseData);
+        throw new Error(
+          `Error en la solicitud: ${response.status} ${response.statusText}`
+        );
       }
 
       // Lógica para actualizar el estado de los comentarios después de agregar uno nuevo
-      const newComment = await response.json(); // Asumo que el comentario recién creado viene en la respuesta
+      const newComment = await response.json();
       setComments([...comments, newComment]);
-
     } catch (error) {
-      console.error('Error al agregar el comentario:', error);
+      console.error("Error al agregar el comentario:", error);
     } finally {
       setCommentModalOpen(false);
     }
   };
-
 
   const fechaFormateada = formatDate(date);
 
@@ -85,57 +88,43 @@ const PostCard = ({ postData, avatar, autor, postId, titulo, descripcion, descri
     return <Navigate to="/login" />;
   }
 
-
-
-
-return (
+  return (
     <div className="post-card-container">
-     <div className="post-card">
+      <div className="post-card">
+        <div className="avatar-container"></div>
 
-       <div className="avatar-container">
-         
+        <div className="encabezado-container">
+          <img className="avatar" src={avatar} alt="Imagen del post" />
+          <div className="post-header">
+            <h3>{titulo}</h3>
+            <span>{fechaFormateada}</span>
+            <p>Por: {autor}</p>
+          </div>
         </div>
 
-      <div className='encabezado-container'>
-       <img className="avatar" src={avatar} alt="Imagen del post" />
-        <div className="post-header">
-          <h3>{titulo}</h3>
-          <span>{fechaFormateada}</span>
-          <p>Por: {autor}</p>
-        </div>
-         
-      </div>
-      
-      <div className="post-content">
-      
-
+        <div className="post-content">
           <div className="image-container">
             <img className="post-image" src={imageURL} alt="Imagen del post" />
           </div>
-          
-         
-  
 
-        <div className="description-comments-container">
-          <div className="description">
-            <p>{descripcion}</p>
-          </div>
-        
-            {console.log('Autor:', autor)}
-          <div className="comments-section">
-              
-              {comments.map((comment) => (
-            <div className='comment' key={comment._id}>
-              <h4>Comentario:</h4>
-                <p >{comment.descripcion_comment}</p>
-                
-                <p>Por: {comment.autor.username}</p>
+          <div className="description-comments-container">
+            <div className="description">
+              <p>{descripcion}</p>
             </div>
-            ))}
-          </div>
+
+            {console.log("Autor:", autor)}
+            <div className="comments-section">
+              {comments.map((comment) => (
+                <div className="comment" key={comment._id}>
+                  <h4>Comentario:</h4>
+                  <p>{comment.descripcion_comment}</p>
+
+                  <p>Por: {comment.autor.username}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-         
           <div className="button-container">
             <button
               className="material-symbols-outlined comment-button"
@@ -151,11 +140,11 @@ return (
                     if (result.isConfirmed) {
                       setRedirect(true);
                     }
-                  }); 
+                  });
                 }
               }}
             >
-               add_comment
+              add_comment
             </button>
 
             <button
@@ -166,8 +155,11 @@ return (
                 if (auth && auth.user) {
                   console.log("auth:", auth);
                   // Verificar si el usuario autenticado es el autor del post
-                  if  (auth.user && auth.user._id ===  postData.autorId) {
-                    console.log("Comparación:", String(auth.user._id) === String(autor));
+                  if (auth.user && auth.user._id === postData.autorId) {
+                    console.log(
+                      "Comparación:",
+                      String(auth.user._id) === String(autor)
+                    );
 
                     console.log("Usuario autenticado y autor del post");
                     // Usuario autenticado y autor del post, mostrar confirmación de eliminación
@@ -197,13 +189,13 @@ return (
                             });
                             refresh();
                           }
-                          
                         });
-                        
                       }
                     });
                   } else {
-                    console.log("Usuario autenticado, pero no es el autor del post");
+                    console.log(
+                      "Usuario autenticado, pero no es el autor del post"
+                    );
                     console.log("auth.userId:", auth.userId);
                     console.log("autor:", autor);
                     // Usuario autenticado, pero no es el autor del post
@@ -223,7 +215,7 @@ return (
                     if (result.isConfirmed) {
                       setRedirect(true);
                     }
-                  }); 
+                  });
                 }
               }}
             >
@@ -238,7 +230,7 @@ return (
           isOpen={isCommentModalOpen}
           onRequestClose={() => setCommentModalOpen(false)}
           onSubmit={handleCommentSubmission}
-          postDescription={descripcion_comment} 
+          postDescription={descripcion_comment}
         />
       )}
     </div>

@@ -7,12 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 function HomePage() {
   
-  // const navigate = useNavigate();
-
-  // const handleNavigateToPost = () => {
-  //   navigate('/post');
-  // };
-
 
   return (
     <div className="container-home">

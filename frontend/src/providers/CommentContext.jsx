@@ -1,6 +1,6 @@
 // CommentContext.jsx
 
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 const CommentContext = createContext();
 
@@ -21,7 +21,9 @@ const PostCommentsProvider = ({ children }) => {
 const usePostComments = () => {
   const context = useContext(CommentContext);
   if (!context) {
-    throw new Error('usePostComments debe usarse dentro de un PostCommentsProvider');
+    throw new Error(
+      "usePostComments debe usarse dentro de un PostCommentsProvider"
+    );
   }
   return context;
 };

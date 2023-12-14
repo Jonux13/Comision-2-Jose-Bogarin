@@ -1,62 +1,58 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  
-  .container-home {
-    display: grid;
-    place-content: center;
-    justify-items: center;
-    padding-bottom: 100px;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .banner {
-    margin-top: 10%;
-   }
+.container-home {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding-bottom: 100px;
+}
 
-   .home-page-title-pl {
-    margin-top: 100px;
-    margin-bottom: -100px;
-    font-size: 25px;
-   }
+.banner {
+  margin-top: 10%;
+}
 
-  .home-page-title { 
-    display: grid;
-    place-content: center;
-    justify-items: center;
-    color: #292929;
-    font-size: 20px;
-    margin-top: 5%;
-    margin-bottom: 2%;
-  }
+.home-page-title-pl {
+  margin-top: 100px;
+  margin-bottom: -100px;
+  font-size: 25px;
+}
 
+.home-page-title {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  color: #292929;
+  font-size: 20px;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
 
-  .container-parrafo {
-    max-width: 80%;
-    color: #292929;
-    text-align: center;
-  }
+.container-parrafo {
+  max-width: 80%;
+  color: #292929;
+  text-align: center;
+}
 
-  .btn-home-post {
+.btn-home-post {
   position: relative;
   text-decoration: none;
-  border-radius: 6px ;
+  border-radius: 6px;
   border: 1px solid transparent;
   padding: 8px 20px 8px 20px;
-  width: 100px ;
-  top: 40px ;
+  width: 100px;
+  top: 40px;
   font-size: 13px;
   font-weight: 500;
   font-family: inherit;
-  background-color:rgb(245, 215, 141);
+  background-color: rgb(245, 215, 141);
   color: #292929;
   transition: background-color 0.2s ease;
-  }
+}
 
-  .btn-home-post:hover {
-    background-color: rgb(235, 194, 90);
-  }
-  
-   
+.btn-home-post:hover {
+  background-color: rgb(235, 194, 90);
+}

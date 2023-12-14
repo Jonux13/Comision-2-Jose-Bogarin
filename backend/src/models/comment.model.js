@@ -1,11 +1,11 @@
 // commentModel.js
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const commentSchema = new Schema(
   {
     autor: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     descripcion_comment: {
@@ -14,7 +14,7 @@ const commentSchema = new Schema(
     },
     postId: {
       type: Schema.Types.ObjectId,
-      ref: 'Post',
+      ref: "Post",
       required: true,
     },
   },
@@ -23,17 +23,11 @@ const commentSchema = new Schema(
   }
 );
 
-// Middleware para asignar el postId antes de guardar el comentario
-// Middleware para asignar el postId antes de guardar el comentario
-commentSchema.pre('save', async function (next) {
+commentSchema.pre("save", async function (next) {
   try {
-    // No es necesario buscar el modelo del post, ya que ya tienes el postId
-    // this.postId debería contener el _id del post
-    next();
   } catch (error) {
     next(error);
   }
 });
 
-
-export const CommentModel = model('Comment', commentSchema);
+export const CommentModel = model("Comment", commentSchema);

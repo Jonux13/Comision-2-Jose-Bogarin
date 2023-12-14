@@ -1,15 +1,14 @@
 // Importa los módulos necesarios
-import React, { useState } from 'react';
-import Modal from 'react-modal';
-import { MdAddAPhoto } from 'react-icons/md';
-
+import React, { useState } from "react";
+import Modal from "react-modal";
+import { MdAddAPhoto } from "react-icons/md";
 
 // Función principal que renderiza el componente
 const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
   // Estado para gestionar los valores del formulario
-  const [avatar, setAvatar] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [avatar, setAvatar] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
@@ -19,11 +18,11 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
         text: "Por favor, completa todos los campos.",
         icon: "success",
         confirmButtonText: "OK",
-      })
+      });
       // alert('Por favor, completa todos los campos.');
       return;
     }
-  
+
     // Validación de URL
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     if (!urlRegex.test(avatar)) {
@@ -31,15 +30,15 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
         text: "Por favor, ingresa una URL válida para la imagen.",
         icon: "success",
         confirmButtonText: "OK",
-      })
+      });
       // alert('Por favor, ingresa una URL válida para la imagen.');
       return;
     }
     onSubmit({ imageURL: avatar, titulo: title, descripcion: description });
     // Limpia los campos después de enviar
-    setAvatar('');
-    setTitle('');
-    setDescription('');
+    setAvatar("");
+    setTitle("");
+    setDescription("");
   };
 
   return (
@@ -86,7 +85,9 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <button className='btn-modal' type="submit">Enviar</button>
+          <button className="btn-modal" type="submit">
+            Enviar
+          </button>
         </form>
       </div>
     </Modal>

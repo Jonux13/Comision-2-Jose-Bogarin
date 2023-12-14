@@ -8,7 +8,6 @@ import PostPage from "./pages/PostPage";
 import PrivateRoutes from "./components/PrivateRoutes";
 import NewPostPage from "./pages/NewPostPage";
 
-
 function AppRouter() {
   return (
     <div>
