@@ -15,14 +15,24 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!avatar || !title || !description) {
-      alert('Por favor, completa todos los campos.');
+      Swal.fire({
+        text: "Por favor, completa todos los campos.",
+        icon: "success",
+        confirmButtonText: "OK",
+      })
+      // alert('Por favor, completa todos los campos.');
       return;
     }
   
     // Validación de URL
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     if (!urlRegex.test(avatar)) {
-      alert('Por favor, ingresa una URL válida para la imagen.');
+      Swal.fire({
+        text: "Por favor, ingresa una URL válida para la imagen.",
+        icon: "success",
+        confirmButtonText: "OK",
+      })
+      // alert('Por favor, ingresa una URL válida para la imagen.');
       return;
     }
     onSubmit({ imageURL: avatar, titulo: title, descripcion: description });
@@ -48,7 +58,7 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
               <input
                 type="text"
                 id="avatar"
-                placeholder="Ingrese la URL del avatar"
+                placeholder="Ingrese la URL de la imagen"
                 value={avatar}
                 onChange={(e) => setAvatar(e.target.value)}
               />

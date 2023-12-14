@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/const";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
 import Header from "./Header";
 
 function LoginForm() {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
 
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,25 +22,19 @@ function LoginForm() {
       [name]: value,
     });
   };
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formData);
-    setFormData({
-      email: "",
-      password: "",
-    });
-
-    // Supongamos que formData es un objeto que contiene los valores del formulario
     const { email, password } = formData;
 
     if (!email || !password) {
-      // Si alguno de los campos está vacío
-      alert("Por favor, completa todos los campos");
+      Swal.fire({
+        text: "Por favor, completa todos los campos",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
     } else {
-      // Si los campos no están vacíos, realizar la solicitud al servidor
       const req = await fetch(`${API_URL}/user/login`, {
         method: "POST",
         body: JSON.stringify(formData),
@@ -49,20 +44,43 @@ function LoginForm() {
       });
 
       if (req.status === 200) {
-        // Si el inicio de sesión es exitoso
-        alert("Inicio de sesión exitoso");
-        const res = await req.json();
-        login(res);
-        navigate("/");
+        Swal.fire({
+          text: "Inicio de sesión exitoso",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            // Redirige después de hacer clic en "OK"
+            const res = await req.json();
+            login(res);
+            navigate("/");
+          }
+        });
       } else if (req.status === 401) {
-        // Si la contraseña es incorrecta
-        alert("Contraseña incorrecta. Por favor, verifica tus credenciales.");
+        Swal.fire({
+          text: "Contraseña incorrecta. Por favor, verifica tus credenciales.",
+          icon: "warning",
+          confirmButtonText: "OK",
+        });
       } else if (req.status === 404) {
-        // Si el usuario no está registrado
-        alert("Usuario no registrado. Por favor, regístrate.");
+        Swal.fire({
+          text: "Usuario no registrado. Por favor, regístrate.",
+          icon: "warning",
+          confirmButtonText: "OK",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            // Redirige después de hacer clic en "OK"
+            const res = await req.json();
+            login(res);
+            navigate("/register");
+          }
+        });
       } else {
-        // En caso de otros errores
-        alert("Error al iniciar sesión");
+        Swal.fire({
+          text: "Error al iniciar sesión",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
     }
   };
@@ -92,7 +110,7 @@ function LoginForm() {
             onChange={handleInputChange}
           />
         </label>
-        <button>LOGIN</button>
+        <button type="submit">LOGIN</button>
       </form>
     </div>
   );

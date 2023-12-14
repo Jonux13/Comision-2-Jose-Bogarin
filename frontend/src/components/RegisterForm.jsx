@@ -32,9 +32,33 @@ function RegisterForm() {
     });
 
     if(req.status === 201) {
-      alert("Usuario registrado exitosamente");
+      Swal.fire({
+        text: "Usuario registrado exitosamente",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Redirige después de hacer clic en "OK"
+          const res = await req.json();
+          login(res);
+          navigate("/");
+        }
+      });
+      // alert("Usuario registrado exitosamente");
     } else {
-      alert("Error al registrar un usuario");
+      Swal.fire({
+        text: "Error al registrar un usuario",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Redirige después de hacer clic en "OK"
+          const res = await req.json();
+          login(res);
+          navigate("/");
+        }
+      });
+      // alert("Error al registrar un usuario");
     }
     
     navigate("/login")

@@ -16,6 +16,8 @@ function HomePage() {
 
   return (
     <div className="container-home">
+      <h1 className="home-page-title-pl">PLATAFORMA INTERACTIVA DE VIAJE</h1>
+
       <img className="banner"
         src="https://www.buenas-vibras.com.ar/uploads/destacados/7/2021-banner-principal-sin-logo-web.jpg"  
         alt="Colagge de fotos de viajes" 

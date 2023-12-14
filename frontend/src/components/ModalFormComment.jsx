@@ -7,12 +7,17 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit, postDescription }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!comment) {
-            alert('Por favor, completa el campo de comentario.');
+            Swal.fire({
+                text: "Por favor, completa el campo de comentario.",
+                icon: "success",
+                confirmButtonText: "OK",
+              })
+     
             return;
         }
     
-        console.log('postDescription:', postDescription);  // Agrega este log
-        console.log('comment:', comment);  // Agrega este log
+        // console.log('postDescription:', postDescription); 
+        // console.log('comment:', comment); 
 
         onSubmit({ descripcion_comment: postDescription, comentario: comment });
         setComment('');

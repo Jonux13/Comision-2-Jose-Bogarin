@@ -124,9 +124,15 @@ const PostPage = () => {
             setModalOpen(true);
           } else {
     
-            alert("debe logearse para interactuar")
-            console.log("Redirigiendo a la página de inicio de sesión...");
-            setRedirect(true);
+            Swal.fire({
+              text: "Debe logearse para interactuar!",
+              icon: "warning",
+              confirmButtonText: "OK",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setRedirect(true);
+              }
+            }); 
           }
         }}
       >

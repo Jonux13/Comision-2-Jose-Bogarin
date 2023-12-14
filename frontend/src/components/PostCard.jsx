@@ -123,9 +123,10 @@ return (
         
             {console.log('Autor:', autor)}
           <div className="comments-section">
-              <h4>Comentario:</h4>
+              
               {comments.map((comment) => (
             <div className='comment' key={comment._id}>
+              <h4>Comentario:</h4>
                 <p >{comment.descripcion_comment}</p>
                 
                 <p>Por: {comment.autor.username}</p>

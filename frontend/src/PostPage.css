@@ -6,8 +6,9 @@
 
 .publicaciones-h2 {
   display: grid;
-  place-content: center;
-  justify-items: center;
+  margin-left: 220px;
+  /* place-content: center; */
+  /* justify-items: center; */
   margin-top: 100px;
   margin-bottom: -50px;
 }
