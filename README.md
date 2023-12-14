@@ -52,14 +52,15 @@ Instalar Dependencias:
 
 bash
 Copy code
-#### Instalar dependencias del frontend
+### Instalar dependencias del frontend
+
 cd frontend
 npm install
 
-#### Volver al directorio principal
+### Volver al directorio principal
 cd ..
 
-#### Instalar dependencias del backend
+### Instalar dependencias del backend
 cd backend
 npm install
 
@@ -70,11 +71,11 @@ Iniciar la Aplicación:
 
 bash
 Copy code
-#### Iniciar el servidor backend
+### Iniciar el servidor backend
 cd backend
 npm run dev
 
-#### En otra terminal, iniciar el servidor frontend
+### En otra terminal, iniciar el servidor frontend
 cd frontend
 npm run dev
 La aplicación estará disponible en http://localhost:3000.
