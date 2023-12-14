@@ -6,7 +6,7 @@ import LoginForm from "./components/LoginForm";
 import NotFoundPage from "./pages/404Page";
 import PostPage from "./pages/PostPage";
 import PrivateRoutes from "./components/PrivateRoutes";
-import NewPostPage from "./pages/NewPostPage";
+
 
 function AppRouter() {
   return (
@@ -21,7 +21,7 @@ function AppRouter() {
 
         {/* Rutas privadas dentro de PrivateRoutes */}
         <Route element={<PrivateRoutes />}>
-          <Route path="/post/new" element={<NewPostPage />} />
+    
         </Route>
 
         <Route path="/register" element={<RegisterForm />} />
