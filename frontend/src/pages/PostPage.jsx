@@ -1,11 +1,13 @@
 // PostPage.jsx
 import React, { useEffect, useContext, useState } from 'react';
-import PostCard from '../components/PostCard'; // Ajusta la ruta según tu estructura de archivos
-import { AuthContext } from "../providers/AuthProvider";
-import { API_URL } from "../utils/const";
-import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 import ModalForm from '../components/ModalForm';
+import PostCard from '../components/PostCard';
+import { API_URL } from '../utils/const';
+import { Link } from 'react-router-dom';
+
+
 
 
 
@@ -15,7 +17,9 @@ const PostPage = () => {
   const [postlists, setPostlists] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [postComments, setPostComments] = useState([]);
 
+  
   const getAllPost = async () => {
     try {
       const response = await fetch(`${API_URL}/post`, {
@@ -45,7 +49,7 @@ const PostPage = () => {
           });
           if (userResponse.ok) {
             const userData = await userResponse.json();
-            return { ...postData, autorId: userData._id, autor: userData.username };
+            return { ...postData, autorId: userData._id, autor: userData.username, avatar: userData.avatar };
           } else {
             console.error(`Error al obtener información del usuario ${postData.autor}`);
             return postData;
@@ -60,6 +64,9 @@ const PostPage = () => {
   };
   
 
+
+
+  
   const handleAddPost = async (postData) => {
     try {
       const response = await fetch(`${API_URL}/post`, {
@@ -106,21 +113,25 @@ const PostPage = () => {
 
 
   return (
+
     <div>
       <h2 className='publicaciones-h2'>Publicaciones</h2>
-      <Link
-        className='post-btn'
+      
+      <button
+        className="material-symbols-outlined post-btn"
         onClick={() => {
           if (auth && auth.token) {
             setModalOpen(true);
           } else {
+    
+            alert("debe logearse para interactuar")
             console.log("Redirigiendo a la página de inicio de sesión...");
             setRedirect(true);
           }
         }}
       >
-        POST
-      </Link>
+        post_add
+      </button>
   
       <ModalForm
         isOpen={isModalOpen}
@@ -132,19 +143,23 @@ const PostPage = () => {
         return (
           <PostCard
             postData={postData}
+            avatar={postData.avatar}
             key={postData._id}
             postId={postData._id.trim()}
             autor={postData.autor}
             titulo={postData.titulo}
-            descripcion={postData.contenido || postData.descripcion}
+            descripcion={postData.descripcion}
             descripcion_comment={postData.descripcion_comment}
             imageURL={postData.imageURL || 'https://www.buenas-vibras.com.ar/uploads/testimonios/16/vicky-min_186x186.png'}
-            date={postData.createdAt || postData.fechaPublicacion}
+            date={postData.createdAt}
             refresh={getAllPost}
+            // comments={postComments}
+            // setComments={setPostComments}
           />
         );
       })}
     </div>
+ 
   );
   
   

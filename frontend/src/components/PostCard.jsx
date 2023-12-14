@@ -4,12 +4,13 @@ import Swal from "sweetalert2";
 import { API_URL } from "../utils/const";
 import { Navigate } from 'react-router-dom';
 import ModalFormComment from '../components/ModalFormComment';
+import { formatDate } from '../utils/dateUtils';
 
 
 
 
 
-const PostCard = ({ postData, autor, postId, titulo, descripcion, descripcion_comment, imageURL, date, refresh }) => {
+const PostCard = ({ postData, avatar, autor, postId, titulo, descripcion, descripcion_comment, imageURL, date, refresh }) => {
   const { auth } = useContext(AuthContext);
   const [redirect, setRedirect] = useState(false);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
@@ -77,8 +78,7 @@ const PostCard = ({ postData, autor, postId, titulo, descripcion, descripcion_co
   };
 
 
-
-
+  const fechaFormateada = formatDate(date);
 
   if (redirect) {
     // Redirigir a la página de inicio de sesión si el usuario no está autenticado
@@ -90,46 +90,75 @@ const PostCard = ({ postData, autor, postId, titulo, descripcion, descripcion_co
 
 return (
     <div className="post-card-container">
-      <div className="post-card">
-        <div className="avatar-container">
-          <img className="avatar" src={imageURL} alt="Imagen del post" />
-        </div>
-        <div className="post-content">
-          <div className="post-header">
-            <h3>{titulo}</h3>
-            <span>{date}</span>
-          </div>
-          <p>{descripcion}</p>
-          <p>Por: {autor}</p>
+     <div className="post-card">
 
-          {console.log('Autor:', autor)}
-         <div className="comments-section">
-          <h4>Comentarios:</h4>
-            {comments.map((comment) => (
-            <div key={comment._id}>
-              <p>{comment.descripcion_comment}</p>
-              
-              <p>Por: {comment.autor.username}</p>
-            </div>
-          ))}
+       <div className="avatar-container">
+         
         </div>
+
+      <div className='encabezado-container'>
+       <img className="avatar" src={avatar} alt="Imagen del post" />
+        <div className="post-header">
+          <h3>{titulo}</h3>
+          <span>{fechaFormateada}</span>
+          <p>Por: {autor}</p>
+        </div>
+         
+      </div>
+      
+      <div className="post-content">
+      
+
+          <div className="image-container">
+            <img className="post-image" src={imageURL} alt="Imagen del post" />
+          </div>
+          
+         
+  
+
+        <div className="description-comments-container">
+          <div className="description">
+            <p>{descripcion}</p>
+          </div>
+        
+            {console.log('Autor:', autor)}
+          <div className="comments-section">
+              <h4>Comentario:</h4>
+              {comments.map((comment) => (
+            <div className='comment' key={comment._id}>
+                <p >{comment.descripcion_comment}</p>
+                
+                <p>Por: {comment.autor.username}</p>
+            </div>
+            ))}
+          </div>
+          </div>
+
+         
           <div className="button-container">
             <button
-              className="comment-button"
+              className="material-symbols-outlined comment-button"
               onClick={() => {
                 if (auth && auth.token) {
                   setCommentModalOpen(true);
                 } else {
-                  console.log("Redirigiendo a la página de inicio de sesión...");
-                  setRedirect(true);
+                  Swal.fire({
+                    text: "Debe logearse para interactuar!",
+                    icon: "warning",
+                    confirmButtonText: "OK",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      setRedirect(true);
+                    }
+                  }); 
                 }
               }}
             >
-              Comentar
+               add_comment
             </button>
 
             <button
-              className="delete-button"
+              className="material-symbols-outlined delete-button"
               onClick={(e) => {
                 e.preventDefault();
 
@@ -185,13 +214,19 @@ return (
                     });
                   }
                 } else {
-                  // Usuario no autenticado, redirigir a la página de inicio de sesión
-                  console.log("Redirigiendo a la página de inicio de sesión...");
-                  setRedirect(true);
+                  Swal.fire({
+                    text: "Debe logearse para interactuar!",
+                    icon: "warning",
+                    confirmButtonText: "OK",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      setRedirect(true);
+                    }
+                  }); 
                 }
               }}
             >
-              Eliminar
+              delete
             </button>
           </div>
         </div>

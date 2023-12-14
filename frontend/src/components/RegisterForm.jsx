@@ -4,6 +4,7 @@ import { API_URL } from '../utils/const';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
+    avatar: '',
     username: '',
     email: '',
     password: ''
@@ -14,8 +15,9 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formData);
+    console.log(formData);
     setFormData({
+      avatar: '',
       username: '',
       email: '',
       password: ''

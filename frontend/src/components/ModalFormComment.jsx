@@ -11,6 +11,9 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit, postDescription }) => {
             return;
         }
     
+        console.log('postDescription:', postDescription);  // Agrega este log
+        console.log('comment:', comment);  // Agrega este log
+
         onSubmit({ descripcion_comment: postDescription, comentario: comment });
         setComment('');
     };

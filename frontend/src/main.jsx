@@ -9,7 +9,7 @@ import './ModalForm.css';
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import AuthProvider from './providers/AuthProvider'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 Modal.setAppElement('#root');
 

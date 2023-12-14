@@ -28,7 +28,7 @@ const Header = () => {
       
       {shouldShowAuthLinks && (
       <div className='login-sign-in-link'>
-        <NavLink to={"/post"} className="nav-link" >POST</NavLink>
+        <NavLink to={"/"} className="nav-link nav-link-post" >HOME</NavLink>
         <NavLink to={"/login"} className="nav-link" >LOG IN</NavLink>
         <NavLink to={"/register"} className="nav-link" >SIGN UP</NavLink>
       </div>

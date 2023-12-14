@@ -12,7 +12,7 @@
   
   .tu-viaje {
     color: #292929;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin: 0;
     margin-left: 40px;
   }
@@ -65,4 +65,18 @@
     transition: border-color 0.25s;
     margin-top: 10px; 
     outline: none !important;
+  }
+
+  .home-post-link {
+    margin-right: 900px;
+  }
+
+  .nav-link {
+    color: #292929;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+
+  .nav-link-post {
+   
   }

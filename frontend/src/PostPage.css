@@ -16,14 +16,11 @@
   position: relative;
   text-decoration: none;
   border-radius: 6px;
-  border: 1px solid transparent;
-  padding: 10px 20px 10px 20px;
-  width: 8%;
+  padding: 6px;
+  width: 5%;
   top: 80px ;
-  left: 175px;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: inherit;
+  left: 225px;
+  font-size: 20px;
   background-color:rgb(245, 215, 141);
   color: #292929;
   cursor: pointer;
@@ -34,4 +31,15 @@
 
 .post-btn:hover {
   background-color: rgb(235, 194, 90);
+}
+
+.custom-swal-confirm-button {
+  background-color: #4caf50; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajusta el tamaño del botón según tus necesidades */
+} 
+
+.custom-swal-content {
+
+  text-align: center !important; /* Centra el contenido del cuadro de diálogo */
 }

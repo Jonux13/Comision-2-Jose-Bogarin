@@ -43,7 +43,7 @@ const ModalForm = ({ isOpen, onRequestClose, onSubmit }) => {
         <h2>Agregar Nuevo Post</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="avatar">Avatar (URL)</label>
+            <label htmlFor="avatar">Image (URL)</label>
             <div className="avatar-upload">
               <input
                 type="text"

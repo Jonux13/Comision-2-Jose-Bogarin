@@ -9,6 +9,7 @@ import { createJWT } from '../utils/jwt.js';
 export const ctrlCreateUser = async (req, res) => {
     try {
         // Obtiene la contraseña del cuerpo de la solicitud.
+        console.log('Cuerpo de la solicitud:', req.body);
         const { password } = req.body;
 
         // Aplica el hash a la contraseña antes de almacenarla.
