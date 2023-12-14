@@ -1,0 +1,88 @@
+/* Header.css */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #b0b0fc80; /* Color azul semi-transparente */
+  backdrop-filter: blur(10px);
+}
+
+.tu-viaje {
+  color: #292929;
+  font-size: 1.4rem;
+  margin: 0;
+  margin-left: 40px;
+}
+
+.login-sign-in-link {
+  display: flex;
+  margin-right: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  gap: 25px;
+  color: #292929;
+}
+
+.login-sign-in-link a {
+  /* margin-left: 50px; */
+  text-decoration: none;
+  color: inherit;
+}
+
+.login-sign-in-link .nav-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 10px;
+  border-radius: 13px;
+}
+
+.nav-container {
+  margin-right: 50px;
+}
+
+.login-sign-in-link a.active {
+  border-radius: 6px;
+  /* padding: 6px; */
+  color: #888b8d;
+  background-color: #f5d78d;
+  transition: background-color 0.2s ease;
+}
+
+.login-sign-in-link a.active:hover {
+  background-color: #ebc25a;
+}
+
+.btn-home {
+  border-radius: 6px !important;
+  border: 1px solid transparent;
+  padding: 10px;
+  margin-right: 40px;
+  margin-bottom: 8px;
+  width: 6%;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f5d78d;
+  color: #888b8d;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-top: 10px;
+  outline: none !important;
+}
+
+.home-post-link {
+  margin-right: 900px;
+}
+
+.nav-link {
+  color: #292929;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+

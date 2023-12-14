@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.publicaciones-h2 {
+  display: grid;
+  margin-left: 220px;
+  margin-top: 100px;
+  margin-bottom: -50px;
+}
+
+.post-btn {
+  position: relative;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 6px;
+  width: 5%;
+  top: 80px;
+  left: 225px;
+  font-size: 20px;
+  background-color: rgb(245, 215, 141);
+  color: #292929;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.post-btn:hover {
+  background-color: rgb(235, 194, 90);
+}
+
+.custom-swal-confirm-button {
+  background-color: #4caf50; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto del botón */
+  padding: 10px 20px; /* Ajusta el tamaño del botón según tus necesidades */
+}
+
+.custom-swal-content {
+  text-align: center !important; /* Centra el contenido del cuadro de diálogo */
+}

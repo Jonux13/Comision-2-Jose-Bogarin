@@ -3,8 +3,8 @@ import { Schema, model, Types } from "mongoose";
 const postSchema = new Schema(
   {
     autor: {
-      type: String,
-      ref: "user",
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     titulo: {
@@ -18,12 +18,11 @@ const postSchema = new Schema(
     imageURL: {
       type: String,
       required: true,
-    }
+    },
   },
   {
     timestamps: true,
   }
 );
-
 
 export const PostModel = model("post", postSchema);
