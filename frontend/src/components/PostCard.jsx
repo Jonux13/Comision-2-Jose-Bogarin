@@ -87,10 +87,7 @@ const PostCard = ({
   };
 
 
-  useEffect(() => {
-    const storedComments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
-    setComments(storedComments);
-  }, []);  
+ 
   
 
   const fechaFormateada = formatDate(date);

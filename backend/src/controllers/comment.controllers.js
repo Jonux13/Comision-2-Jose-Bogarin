@@ -43,7 +43,7 @@ export const ctrlGetCommentsByPostId = async (req, res) => {
     }
 
     // Realiza la lógica para obtener el comentario asociado al postId
-    const comment = await CommentModel.findOne({ postId });
+    const comment = await CommentModel.find({ postId });
 
     // Console log para imprimir el resultado de la consulta
     console.log("Comentario encontrado:", comment);
