@@ -72,9 +72,8 @@ Iniciar la Aplicación:
 
 ### Iniciar el servidor backend
 cd backend
-npm run dev
-
-### En otra terminal, iniciar el servidor frontend
+npm run devmongod
+ frontend
 cd frontend
 npm run dev
 La aplicación estará disponible en http://localhost:3000.

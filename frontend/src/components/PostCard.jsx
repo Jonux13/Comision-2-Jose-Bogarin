@@ -23,6 +23,8 @@ const PostCard = ({
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [comments, setComments] = useState([]);
 
+
+
   const handleDelete = async (postId) => {
     try {
       const response = await fetch(`${API_URL}/post/${postId}`, {
@@ -43,6 +45,8 @@ const PostCard = ({
       throw error;
     }
   };
+
+
 
   const handleCommentSubmission = async (commentData) => {
     console.log("commentData:", commentData);
@@ -72,13 +76,22 @@ const PostCard = ({
       }
 
       // Almacenamos el comentario en el estado del componente
-      setComments([...comments, await response.json()]);
+      const newComment = await response.json();
+      setComments([...comments, newComment]);
+      localStorage.setItem(`comments-${postId}`, JSON.stringify([...comments, newComment]));
     } catch (error) {
       console.error("Error al agregar el comentario:", error);
     } finally {
       setCommentModalOpen(false);
     }
   };
+
+
+  useEffect(() => {
+    const storedComments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+    setComments(storedComments);
+  }, []);  
+  
 
   const fechaFormateada = formatDate(date);
 

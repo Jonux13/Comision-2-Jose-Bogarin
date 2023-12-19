@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   padding: 10px;
-  background-color: #b0b0fc80; /* Color azul semi-transparente */
+  background-color: #b0b0fc80; 
   backdrop-filter: blur(10px);
 }
 
